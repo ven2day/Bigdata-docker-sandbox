@@ -1,0 +1,26 @@
+2020-03-17 16:28:52 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-197]
+2021-02-21 11:56:41 database: opening /metabase-data/metabase.db/metabase.db
+2021-02-21 16:25:35 database: close
+org.h2.message.DbException: IO Exception: "Closing" [90028-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.mvstore.db.MVTableEngine$Store.close(MVTableEngine.java:397)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1439)
+	at org.h2.engine.Database.close(Database.java:1336)
+	at org.h2.engine.DatabaseCloser.run(DatabaseCloser.java:63)
+Caused by: org.h2.jdbc.JdbcSQLException: IO Exception: "Closing" [90028-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 5 more
+Caused by: java.lang.IllegalStateException: This map is closed [1.4.197/4]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.MVMap.beforeWrite(MVMap.java:1001)
+	at org.h2.mvstore.MVMap.copy(MVMap.java:1190)
+	at org.h2.mvstore.MVMap.copy(MVMap.java:1207)
+	at org.h2.mvstore.MVMap.copy(MVMap.java:1207)
+	at org.h2.mvstore.MVMap.copyFrom(MVMap.java:1177)
+	at org.h2.mvstore.MVStoreTool.compact(MVStoreTool.java:531)
+	at org.h2.mvstore.MVStoreTool.compact(MVStoreTool.java:496)
+	at org.h2.mvstore.MVStoreTool.compact(MVStoreTool.java:442)
+	at org.h2.mvstore.db.MVTableEngine$Store.close(MVTableEngine.java:386)
+	... 3 more
