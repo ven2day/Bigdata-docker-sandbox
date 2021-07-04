@@ -390,7 +390,7 @@ services:
       - "kafka"
     networks:
       net_pet:
-        ipv4_address: 172.25.0.26
+        ipv4_address: 172.27.1.26
         
   grafana:
     image: grafana/grafana:6.1.1
@@ -406,7 +406,7 @@ services:
       - "prometheus"
     networks:
       net_pet:
-        ipv4_address: 172.25.0.27
+        ipv4_address: 172.27.1.27
 
   zeppelin:
     image: apache/zeppelin:0.8.1
@@ -422,7 +422,7 @@ services:
       - ./base/zeppelin/zeppelin-interpreters/interpreter.json:/zeppelin/conf/interpreter.json
     networks:
       net_pet:
-        ipv4_address: 172.25.0.28
+        ipv4_address: 172.27.1.28
  
   jupyter-spark:
     image: fjardim/jupyter-spark
