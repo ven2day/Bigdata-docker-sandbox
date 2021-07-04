@@ -364,9 +364,9 @@ services:
     image: apache/nifi:latest
     container_name: nifi
     hostname: nifi
-    #volumes:
-      #- ./data/nifi:/opt/nifi/nifi-current/flowfile_repository
-      #- ./data/util:/util
+    volumes:
+      - ./base/nifi:/opt/nifi/nifi-current/flowfile_repository
+      - ./base/util:/util
     ports:
       - 9090:9090
       - 8443:8443
