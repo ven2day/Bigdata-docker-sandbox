@@ -349,6 +349,7 @@ services:
   storm:
     image: fmantuano/apache-storm:develop
     container_name: storm
+    hostname: storm
     ports:
           - "8090:8080"
           - "8000:8000"
@@ -381,7 +382,7 @@ services:
     container_name: prometheus
     hostname: prometheus
     expose:
-      - "9097"
+      - "9097:9097"
     volumes:
       - ./base/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./base/prometheus/flink.rules.yml:/etc/prometheus/flink.rules.yml
@@ -397,7 +398,7 @@ services:
     container_name: grafana
     hostname: grafana
     expose:
-      - "3001"
+      - "3001:3001"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=P@ssword@!23
     volumes:
@@ -413,9 +414,9 @@ services:
     hostname: zeppelin
     container_name: zeppelin
     expose:
-      - "8087"
-      - "8473"
-      - "4073"
+      - "8087:9087"
+      - "8473:8473"
+      - "4073:4073"
     volumes:
       - ./base/zeppelin/datadrive:/datadrive
       - ./base/zeppelin/pyspark-notebooks:/zeppelin/notebook
