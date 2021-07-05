@@ -378,8 +378,9 @@ services:
           memory: 500m
 
   zeppelin:
-    network_mode: host
     image: apache/zeppelin:0.8.2
+    container_name: zeppelin
+    hostname: zeppelin
     ports:
       - "7077:7077"
       - "8080:8080"
