@@ -232,7 +232,7 @@ services:
     container_name: presto
     hostname: presto
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - hive-server  
     deploy:
@@ -340,6 +340,8 @@ services:
 
   streamsets:
     image: streamsets/datacollector:3.13.0-latest
+    container_name: streamsets
+    hostname: streamsets
     ports:
       - "18630:18630"
     networks:
@@ -383,7 +385,7 @@ services:
     hostname: zeppelin
     ports:
       - "7077:7077"
-      - "8080:8080"
+      - "8086:8086"
     volumes:
       - ./data/zeppelin/logs:/logs
       - ./data/zeppelin/notebook:/notebook
