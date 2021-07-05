@@ -383,21 +383,51 @@ services:
     image: apache/zeppelin:0.8.2
     container_name: zeppelin
     hostname: zeppelin
+    depends_on:
+      - jupyter-spark
+      - livy
     ports:
       - "7077:7077"
-      - "8086:8086"
     volumes:
       - ./data/zeppelin/logs:/logs
       - ./data/zeppelin/notebook:/notebook
       - ./data/zeppelin/conf/interpreter.json:/zeppelin/conf/interpreter.json
     environment:
       ZEPPELIN_NOTEBOOK_DIR: /notebook
+      ZEPPELIN_PORT: 7077
       ZEPPELIN_LOG_DIR: /logs
     networks:
       net_pet:
-        ipv4_address: 172.27.1.28  
- 
-  jupyter-spark:
+        ipv4_address: 172.27.1.28
+        
+  livy:
+    image: panovvv/livy:2.5.2
+    container_name: livy
+    #build: '../livy-docker'
+    hostname: livy
+    depends_on:
+      - jupyter-spark
+    volumes:
+      - ./livy_batches:/livy_batches
+      - ./data:/data
+    environment:
+      - SPARK_MASTER=yarn
+      # Intentionally not specified - if it's set here, then we can't override it
+      # via REST API ("conf"={} map)
+      # Can be client or cluster
+      #      - SPARK_DEPLOY_MODE=client
+      - LOCAL_DIR_WHITELIST=/data/batches/
+      - ENABLE_HIVE_CONTEXT=false
+      # Defaults are fine for variables below. Uncomment to change them.
+      #      - LIVY_HOST=0.0.0.0
+      #      - LIVY_PORT=8998
+    ports:
+      - 8998:8998
+    networks:
+      net_pet:
+        ipv4_address: 172.27.1.29      
+
+   jupyter-spark:
     image: fjardim/jupyter-spark
     hostname: jupyter-spark
     container_name: jupyter-spark
