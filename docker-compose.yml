@@ -383,9 +383,6 @@ services:
     hostname: prometheus
     expose:
       - 9097:9097
-    volumes:
-      - ./base/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./base/prometheus/flink.rules.yml:/etc/prometheus/flink.rules.yml
     depends_on:
       - "zookeeper"
       - "kafka"
@@ -401,8 +398,6 @@ services:
       - 3001:3001
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=P@ssword@!23
-    volumes:
-      - ./base/grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
       - "prometheus"
     networks:
@@ -417,10 +412,6 @@ services:
       - 8087:9087
       - 8473:8473
       - 4073:4073
-    volumes:
-      - ./base/zeppelin/datadrive:/datadrive
-      - ./base/zeppelin/pyspark-notebooks:/zeppelin/notebook
-      - ./base/zeppelin/zeppelin-interpreters/interpreter.json:/zeppelin/conf/interpreter.json
     networks:
       net_pet:
         ipv4_address: 172.27.1.28
