@@ -1,6 +1,5 @@
 version: '3' 
 services:
-
   namenode:
     image: fjardim/namenode_sqoop
     container_name: namenode
