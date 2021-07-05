@@ -405,16 +405,26 @@ services:
         ipv4_address: 172.27.1.27
 
   zeppelin:
-    image: apache/zeppelin:0.8.1
-    hostname: zeppelin
-    container_name: zeppelin
-    expose:
-      - 8087:9087
-      - 8473:8473
-      - 4073:4073
+    image: apache/zeppelin:0.9.0
+    ports:
+      - "8096:8080"
+    environment:
+      - ZEPPELIN_NOTEBOOK_DIR=/zeppelin/notebook
+      - ZEPPELIN_LOG_DIR=/zeppelin/logs
+    volumes:
+      - type: bind
+    source: /opt/data_works_cloud/shared/zeppelin/notebook
+    target: /zeppelin/notebook
+            # - type: bind
+            #  source: ~/sources/data_works_cloud/shared/zeppelin/conf
+            #  target: /zeppelin/conf
+      - type: bind
+    source: /opt/data_works_cloud/shared/zeppelin/logs
+    target: /zeppelin/logs
+      - zeppelin-interpreter:/zeppelin/interpreter
     networks:
       net_pet:
-        ipv4_address: 172.27.1.28
+        ipv4_address: 172.27.1.28  
  
   jupyter-spark:
     image: fjardim/jupyter-spark
