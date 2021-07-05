@@ -1,6 +1,6 @@
 version: '3' 
 services:
-  
+
   namenode:
     image: fjardim/namenode_sqoop
     container_name: namenode
@@ -232,7 +232,7 @@ services:
     container_name: presto
     hostname: presto
     ports:
-      - 8080:8080
+      - "8080:8080"
     depends_on:
       - hive-server  
     deploy:
@@ -339,9 +339,9 @@ services:
         ipv4_address: 172.27.1.21
 
   streamsets:
-    image: streamsets/datacollector:3.13.0-latest
     container_name: streamsets
     hostname: streamsets
+    image: streamsets/datacollector:3.13.0-latest
     ports:
       - "18630:18630"
     networks:
@@ -351,7 +351,6 @@ services:
   storm:
     image: fmantuano/apache-storm:develop
     container_name: storm
-    hostname: storm
     ports:
           - "8090:8080"
           - "8000:8000"
@@ -362,6 +361,7 @@ services:
     networks:
       net_pet:
         ipv4_address: 172.27.1.23
+        
   nifi:
     image: apache/nifi:latest
     container_name: nifi
@@ -378,8 +378,8 @@ services:
       resources:
         limits:
           memory: 500m
-          
-   jupyter-spark:
+ 
+  jupyter-spark:
     image: fjardim/jupyter-spark
     hostname: jupyter-spark
     container_name: jupyter-spark
@@ -411,3 +411,6 @@ networks:
       driver: default
       config:
         - subnet: 172.27.0.0/16
+
+          
+   
