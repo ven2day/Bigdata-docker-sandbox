@@ -42,7 +42,7 @@ This is a Hadoop Cluster that contains the necessary tools that can be used in t
 - **Apache-NiFi** : [apache/nifi:latest](https://hub.docker.com/r/apache/nifi)
 ---
 
-## Instalations
+## Installations
 ```bash=
 git clone https://github.com/ven2day/Bigdata-docker-sandbox.git
 
@@ -119,10 +119,9 @@ SELECT *FROM users;
 ## Nifi
 - **URL** : http://localhost:9090/nifi/
 
-- **Credits to** : 
-			[Fábio Jardim](https://github.com/fabiogjardim)
-			[Mahmoud Zakaria](https://github.com/ZakariaMahmoud)
-
-
 ---
-## **Maodified by Ven2Day** 
+- **Credits to** : 
+			* [Fábio Jardim](https://github.com/fabiogjardim),
+			* [Mahmoud Zakaria](https://github.com/ZakariaMahmoud)
+
+## **Modified by Ven2Day** 
